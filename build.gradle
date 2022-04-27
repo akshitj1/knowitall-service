@@ -1,0 +1,34 @@
+buildscript {
+    ext {
+        springVersion = '2.3.12.RELEASE'
+        springPluginVersion = '1.0.11.RELEASE'
+    }
+}
+
+plugins {
+    id 'java'
+    id 'io.spring.dependency-management' version "${springPluginVersion}"
+    id 'org.springframework.boot' version "${springVersion}"
+}
+
+version '1.0-SNAPSHOT'
+
+java{
+    toolchain{
+        languageVersion.set(JavaLanguageVersion.of(11))
+    }
+}
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    implementation platform("org.springframework.boot:spring-boot-dependencies:${springVersion}")
+    implementation 'org.springframework.boot:spring-boot-starter'
+
+    implementation 'org.springframework.boot:spring-boot-starter-web'
+
+    compileOnly 'org.projectlombok:lombok'
+    annotationProcessor 'org.projectlombok:lombok'
+}
